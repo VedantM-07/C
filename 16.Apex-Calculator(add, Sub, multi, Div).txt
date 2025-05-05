@@ -1,0 +1,443 @@
+16.Creating an application in salesForce.com using Apex Programming Language .
+Perform (add, Sub, multi, Div) of Two numbers.
+
+
+-----------------------------------------------------
+
+
+🔹 Step 1: Log in to Salesforce
+
+ Open [ https://login.salesforce.com	](https://login.salesforce.com)
+ Enter your username and password
+ Click Log In
+
+---
+
+ 🔹 Step 2: Open Developer Console
+
+ Click the gear icon (⚙️) at the top-right corner
+ Select Developer Console
+
+---
+
+ 🔹 Step 3: Create a New Apex Class
+
+ In Developer Console: `File > New > Apex Class`
+ Name the class: `AdditionApp`
+ Paste the following code:
+
+```apex
+
+public class Calculator {
+
+    // Addition
+    public static Integer add(Integer a, Integer b) {
+        return a + b;
+    }
+
+    // Subtraction
+    public static Integer subtract(Integer a, Integer b) {
+        return a - b;
+    }
+
+    // Multiplication
+    public static Integer multiply(Integer a, Integer b) {
+        return a * b;
+    }
+
+    // Division with basic zero check
+    public static Decimal divide(Integer a, Integer b) {
+        if (b == 0) {
+            System.debug('Division by zero is not allowed.');
+            return null;
+        }
+        return Decimal.valueOf(a) / Decimal.valueOf(b);
+    }
+}
+
+```
+
+ Click OK to save
+
+---
+
+ 🔹 Step 4: Run Code Using Execute Anonymous Window
+
+ In Developer Console: `Debug > Open Execute Anonymous Window`
+ Paste this test code:
+
+```apex
+
+
+Integer x = 20;
+Integer y = 5;
+
+System.debug('Addition: ' + Calculator.add(x, y));
+System.debug('Subtraction: ' + Calculator.subtract(x, y));
+System.debug('Multiplication: ' + Calculator.multiply(x, y));
+System.debug('Division: ' + Calculator.divide(x, y));
+
+
+
+```
+
+ Check “Open Log” (optional)
+ Click Execute
+
+---
+
+ 🔹 Step 5: View the Output
+
+ Go to the Logs tab in Developer Console
+ Open the latest log
+ Press `Ctrl + F` and search: `Result:`
+ You should see:
+
+  ```
+
+
+  Result will be shown in execution log section's detail coloumn
+  
+
+```
+
+---
+
+
+
+
+
+theory :
+
+ Apex & Platform Basics
+Q: What is Salesforce.com?
+A: Salesforce.com is a cloud-based Customer Relationship Management (CRM) platform offering both SaaS and PaaS services. It provides tools to manage customer data, automate workflows, and build custom applications.
+
+Q: What is Apex?
+A: Apex is a strongly typed, object-oriented programming language developed by Salesforce for writing business logic, such as triggers, classes, and web services, that runs on the Force.com platform.
+
+Q: Why do we use Apex in Salesforce?
+A: Apex allows developers to implement custom logic directly in the Salesforce cloud. It is used for automation, customization, data manipulation, and extending platform functionalities.
+
+Q: Is Apex compiled or interpreted?
+A: Apex is compiled and executed entirely on Salesforce servers. The compilation happens when the code is saved.
+
+Q: Where can we write Apex code in Salesforce?
+A: In the Developer Console, Apex Class Editor, Visual Studio Code (with Salesforce CLI), or directly in the Setup UI under Apex Classes.
+
+🔹 About the Code
+Q: What does your code do?
+A: It defines a class Calculator with static methods to perform addition, subtraction, multiplication, and division of two numbers provided by the user.
+
+Q: What are static methods in Apex?
+A: Static methods belong to the class itself, not to objects. They can be called directly using the class name without instantiating the class.
+
+Q: Why are you using static methods here?
+A: Since the operations are simple and don’t require maintaining object state, static methods provide a clean and efficient way to perform these tasks.
+
+Q: What data types are used in the code?
+A: We use Integer for input values and return types for add, subtract, multiply. For divide, we use Decimal to handle non-integer results accurately.
+
+Q: Why use Decimal instead of Integer for division?
+A: To avoid loss of precision. Integer division truncates decimals, whereas Decimal retains them (e.g., 7/2 returns 3 with Integer, but 3.5 with Decimal).
+
+🔹 Method-Level Questions
+Q: Explain the add() method.
+A: It takes two integers as input and returns their sum. It uses the + operator.
+
+Q: Explain the subtract() method.
+A: It returns the difference between two integers using the - operator.
+
+Q: Explain the multiply() method.
+A: It multiplies two integers using the * operator.
+
+Q: Explain the divide() method.
+A: It divides two integers, first checking for zero division. If the divisor is not zero, it converts both to Decimal and returns the result of a / b.
+
+Q: What happens if the user divides by 0?
+A: The method detects division by zero, prints a debug message, and returns null instead of throwing an error.
+
+🔹 Execution and Debugging
+Q: How do you run this code in Salesforce?
+A: By opening the Developer Console, selecting "Execute Anonymous", pasting the test code, and clicking Execute.
+
+Q: What is System.debug()?
+A: It logs the output to the Debug Logs tab in Developer Console, helping developers see variable values and program results.
+
+Q: Why use Execute Anonymous?
+A: It allows us to run Apex code directly for testing purposes without needing a user interface.
+
+🔹 Salesforce Platform Concepts
+Q: What is Force.com?
+A: Force.com is Salesforce’s Platform-as-a-Service (PaaS) that allows developers to build and run apps on Salesforce infrastructure using Apex, Visualforce, and Lightning.
+
+Q: What are Governor Limits?
+A: Salesforce enforces limits to ensure multi-tenant resource fairness, like limiting SOQL queries (100), DML operations (150), and CPU time (10,000 ms).
+
+Q: Do these arithmetic methods hit governor limits?
+A: No, they are simple CPU-bound operations with no DML or SOQL, so they stay well within limits.
+
+Q: Can you call this class from a Lightning Web Component?
+A: Yes. We can expose the Apex class methods as @AuraEnabled and use them in LWC or Aura components for UI interaction.
+
+🔹 Error Handling and Security
+Q: How does your code handle invalid input?
+A: It includes a check to avoid division by zero. Further validation can be added if inputs come from a UI.
+
+Q: Can you secure this code to prevent unauthorized access?
+A: Yes, using with sharing keyword in the class ensures respect for object/field-level permissions.
+
+Q: How would you store and retrieve input from Salesforce objects?
+A: By defining a custom object with fields like Number1, Number2, Result, and using SOQL/DML in Apex.
+
+🔹 Practical Application Questions
+Q: What are some real-world uses of this logic?
+A: It can be used in invoicing (total = qty × price), tax calculation, profit/loss analysis, student score aggregation, etc.
+
+Q: How would you expose this logic to external systems?
+A: By converting this class into a @RestResource API endpoint so other applications can send inputs and receive results.
+
+Q: What is the difference between a trigger and a class?
+A: A trigger automatically executes when a record is inserted/updated, while a class is reusable logic that can be called manually or from triggers.
+
+Q: Can you schedule this logic to run automatically?
+A: Yes, using Scheduled Apex, we can run this code periodically (though it’s more useful for data-processing logic than arithmetic).
+
+Q: How would you write test cases for this class?
+A: By creating a test class with @isTest annotation, and writing unit tests for all methods using System.assertEquals().
+
+🔹 Bonus Questions
+Q: Can we perform the same in Process Builder or Flow?
+A: Yes, but with limited arithmetic support. Apex provides more flexibility and power for calculations and validations.
+
+Q: Is Apex only used for backend logic?
+A: Primarily yes, but it can be connected to frontend components (LWC/Visualforce) for interactive applications.
+
+Q: What are Apex Classes and how are they different from Triggers?
+A: Apex Classes are reusable logic containers; triggers are event-driven scripts attached to objects. Classes are modular and easier to test.
+
+Q: What’s the default access modifier for Apex classes?
+A: It’s private if not specified, but for cross-class access or global use, we define it as public.
+
+
+🔹 1. What is the role of Apex in the Salesforce ecosystem?
+A: Apex serves as the server-side programming language on the Salesforce platform. It enables developers to define custom application logic, perform data operations, and automate business processes like validations, workflows, and integrations.
+
+🔹 2. How is Apex different from Java or C++?
+A: Apex syntax is similar to Java, but it runs in a multi-tenant cloud environment with strict governor limits. Unlike Java, memory and thread management are abstracted, and it focuses heavily on database interaction and Salesforce object model.
+
+🔹 3. What are some features of Apex?
+A: Key features include:
+
+Built-in support for DML and SOQL
+
+Trigger support for automation
+
+Exception handling
+
+Unit testing framework
+
+Object-oriented programming with classes and interfaces
+
+🔹 4. Can Apex be compiled locally?
+A: No. Apex code is compiled and executed on Salesforce servers. Developers write the code in Developer Console or VS Code, and it is saved and executed in the cloud.
+
+🔹 5. What is the Apex runtime environment?
+A: It is the managed execution environment on Salesforce servers where Apex code runs. It enforces resource usage limits, manages memory, and ensures fair execution across users.
+
+🔹 6. What is the difference between Apex Class and Apex Trigger?
+A: An Apex Class is reusable logic that can be called from triggers or UI. An Apex Trigger is event-driven and automatically responds to database events like insert, update, delete.
+
+🔹 7. What is DML in Apex?
+A: DML (Data Manipulation Language) operations allow Apex to insert, update, delete, merge, or undelete records in Salesforce. Example: insert accountList;
+
+🔹 8. What is SOQL in Apex?
+A: SOQL (Salesforce Object Query Language) is used to retrieve records from Salesforce objects (like tables in SQL). Example: SELECT Name FROM Account.
+
+🔹 9. What is a multi-tenant environment in Salesforce?
+A: A multi-tenant environment allows multiple customers to share the same infrastructure and codebase securely, with logical separation of data and limits.
+
+🔹 10. What are Apex governor limits? Why do they exist?
+A: Governor limits ensure resource fairness in the cloud. They limit usage of CPU time, memory, DML rows, SOQL queries, etc., to prevent one user from affecting others.
+
+🔹 11. What are the different types of collections in Apex?
+A: Apex supports:
+
+List (ordered collection)
+
+Set (unique, unordered)
+
+Map (key-value pairs)
+
+🔹 12. What is bulkification in Apex?
+A: Bulkification is the process of writing Apex code that handles multiple records efficiently, instead of one at a time. It is required to avoid hitting governor limits.
+
+🔹 13. What is a trigger context variable?
+A: These are built-in variables like Trigger.new, Trigger.old used in triggers to access before/after states of records during DML operations.
+
+🔹 14. What is Visualforce and how is it related to Apex?
+A: Visualforce is Salesforce's HTML-like markup language for building UIs. It is often paired with Apex controllers to manage data and behavior.
+
+🔹 15. Can Apex interact with external systems?
+A: Yes, using HTTP Callouts, Web Services (SOAP/REST), Apex can send/receive data from external APIs.
+
+🔹 16. What is Apex Testing?
+A: Apex requires unit tests to validate code before deployment. It uses @isTest methods and tools like Test.startTest() and Test.stopTest() for mock execution.
+
+🔹 17. What is the importance of test coverage in Apex?
+A: Salesforce requires a minimum of 75% test coverage across Apex classes and triggers for deployment to a production org.
+
+🔹 18. What is an Apex batch class?
+A: An Apex batch class processes large volumes of data asynchronously by breaking it into chunks and using the Database.Batchable interface.
+
+🔹 19. What are asynchronous Apex methods?
+A: These methods (@future, batch, queueable, schedulable) allow Apex to run code in the background, separate from the main execution thread.
+
+🔹 20. What are some Apex design best practices?
+A: Key practices include:
+
+Avoid hardcoding
+
+Use custom labels and metadata
+
+Bulkify logic
+
+Handle exceptions gracefully
+
+Write test classes and keep code modular
+
+
+
+)
+🔹 1. What is the difference between declarative and programmatic development in Salesforce?
+A:
+
+Declarative: Point-and-click tools (like Process Builder, Flows, Workflows).
+
+Programmatic: Using code (Apex, Lightning Components, Visualforce) for complex custom logic.
+
+🔹 2. What is the Salesforce Object Model?
+A:
+It consists of Standard and Custom Objects that represent tables in a database. Apex interacts with these using DML and SOQL.
+
+🔹 3. What are the types of Apex methods?
+A:
+
+Instance methods (called on an object)
+
+Static methods (called on the class directly)
+
+Test methods (@isTest)
+
+Future methods (@future)
+
+🔹 4. What are Apex classes and objects?
+A:
+An Apex class is a blueprint for objects that contains variables, constructors, and methods. Objects are created from classes using the new keyword.
+
+🔹 5. What is the default access modifier in Apex?
+A:
+Private. If no access modifier is mentioned, the method or variable is private by default.
+
+🔹 6. What are data types in Apex?
+A:
+Apex supports:
+
+Primitive types (Integer, String, Boolean, Double)
+
+sObjects
+
+Collections (List, Set, Map)
+
+Enums and User-defined types
+
+🔹 7. Can you overload methods in Apex?
+A:
+Yes. Method overloading is supported by changing the number or type of parameters.
+
+🔹 8. What is a trigger event?
+A:
+It specifies when a trigger should run: before insert, after insert, before update, after delete, etc.
+
+🔹 9. What is a sandbox in Salesforce?
+A:
+A sandbox is a replica of your production environment used for development, testing, and training without affecting live data.
+
+🔹 10. What is a managed vs unmanaged package?
+A:
+
+Managed: Controlled by provider, can’t modify code.
+
+Unmanaged: Full access to code. Used for open-source or custom solutions.
+
+🔹 11. What is Apex Trigger.new and Trigger.old?
+A:
+
+Trigger.new: Holds new version of records being inserted/updated.
+
+Trigger.old: Holds previous version of records (before update/delete).
+
+🔹 12. What is a record in Salesforce?
+A:
+A record is a row in an object (table). It holds data like a customer, contact, or transaction.
+
+🔹 13. What are standard objects in Salesforce?
+A:
+Predefined objects like Account, Contact, Lead, Opportunity, etc.
+
+🔹 14. What are custom objects?
+A:
+Objects created by users for storing custom data (e.g., Student__c, Invoice__c). Always suffixed with __c.
+
+🔹 15. What are Apex exceptions and how are they handled?
+A:
+Errors at runtime are handled using try-catch-finally blocks to prevent app crashes.
+
+apex
+Copy
+Edit
+try {
+  // risky code
+} catch (Exception e) {
+  System.debug(e);
+}
+🔹 16. What are annotations in Apex?
+A:
+Metadata tags that define method behavior. Examples:
+
+@isTest: Marks a method as a test method.
+
+@future: Marks a method for asynchronous execution.
+
+🔹 17. What is the difference between insert and upsert?
+A:
+
+insert: Adds a new record.
+
+upsert: Updates if record exists, inserts if not.
+
+🔹 18. What is the maximum number of DML statements in one transaction?
+A:
+150 per transaction (governor limit).
+
+🔹 19. What is Apex Scheduler?
+A:
+A feature to schedule Apex classes to run at specific intervals using Schedulable interface.
+
+🔹 20. How can you debug Apex code?
+A:
+Using:
+
+System.debug() statements
+
+Debug logs in Developer Console
+
+Apex Test Execution logs
+
+🔹 21. What are the advantages of using Apex over Java in Salesforce?
+A:
+Apex is tightly integrated with Salesforce CRM. It includes native support for Salesforce data types, events, and cloud execution with built-in security and limit enforcement.
+
+
+
+

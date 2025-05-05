@@ -1,0 +1,572 @@
+20.Design and develop custom Application using Sales force Cloud (Lightning
+Platform).
+---------------------------------------------------------------------
+------------------------------------------------------------------
+
+
+✅ STEP 1: Login to Salesforce Developer Edition
+Visit: https://login.salesforce.com
+
+Enter your Developer credentials and log in.
+
+Make sure you are using Lightning Experience:
+
+Top-right corner → If it says "Switch to Lightning Experience," click it.
+
+If it already says "Switch to Salesforce Classic," you're good.
+
+✅ STEP 2: Go to Object Manager
+Top-right: Click Gear Icon ⚙️ → Select Setup (1st item from dropdown).
+
+Wait until Setup loads. Then:
+
+Top-left of Setup screen: In the Quick Find/Search box, type = Object Manager.
+
+Click the Object Manager tab that appears just under the Setup header (left side of screen).
+
+✅ STEP 3: Create a Custom Object
+In Object Manager (top center), click the “Create” dropdown → Select “Custom Object”.
+
+⚠️ If no dropdown: click "Create" → Then "Custom Object" in left-hand menu.
+
+Fill in:
+
+Label: Expense
+
+Plural Label: Expenses
+
+Object Name: auto-fills as Expense
+
+Record Name: Expense Name (default), leave type as Text
+
+Important checkboxes (lower part of form):
+
+☑ Allow Reports (left column, second option)
+
+☑ Allow Activities (left column, third option)
+
+☑ Track Field History (right column)
+
+☑ Launch New Custom Tab Wizard (bottom)
+
+Click Save (bottom right corner).
+
+✅ STEP 4: Create a Tab for the Object
+The system launches New Custom Tab Wizard.
+
+On Step 1:
+
+Select Tab Style: Click the icon box → Choose any icon (e.g., Coin, Briefcase).
+
+Click Next (bottom right).
+
+Step 2: Tab Visibility → Keep as Default On, then click Next.
+
+Step 3: Add to Profiles → Keep default selected → Click Next.
+
+Step 4: Click Save.
+
+✅ STEP 5: Add Custom Fields to Your Object
+Still inside Object Manager, you’re in your new Expense object.
+
+On left side: Click Fields & Relationships → Click the New button (top-right).
+
+Create the following fields one by one:
+
+Field 1: Amount
+Data Type: Number → Click Next (bottom right)
+
+Field Label: Amount
+
+Length: 18, Decimal Places: 2
+
+Click Next → Next → Save
+
+Field 2: Date
+Data Type: Date → Next
+
+Field Label: Date
+
+Next → Next → Save
+
+Field 3: Category
+Data Type: Picklist → Next
+
+Field Label: Category
+
+Values (one per line): Food, Travel, Bills, Other
+
+Next → Next → Save
+
+Field 4: Description
+Data Type: Text Area → Next
+
+Field Label: Description
+
+Length: 255
+
+Next → Next → Save
+
+✅ STEP 6: Create a Lightning App
+Setup (gear icon) → In Quick Find (top-left), search App Manager
+
+Click App Manager → Top-right corner: Click New Lightning App
+
+Step-by-step:
+
+Step 1:
+
+App Name: Expense Tracker
+
+Developer Name auto-filled
+
+Click Next
+
+Step 2: App Branding (optional) → Click Next
+
+Step 3: Navigation
+
+Choose Standard Navigation
+
+Select Desktop only
+
+Click Next
+
+Step 4: Add Utility Items (optional) → Just click Next
+
+Step 5: Add Objects
+
+Left side: Scroll to find Expenses
+
+Click Expenses → Click Add >
+
+Click Next
+
+Step 6: User Profiles → Select "System Administrator"
+
+Click Save & Finish
+
+✅ STEP 7: Set Permissions for the Object (IMPORTANT)
+Option A: Modify Profile Permissions
+Setup → Quick Find: Type Profiles → Open it.
+
+Click on System Administrator (or your active profile).
+
+Scroll to bottom → Click Object Settings
+
+Scroll to find Expenses → Click on it.
+
+Click Edit
+
+Tick: ☑ Read, ☑ Create, ☑ Edit (☑ Delete if needed)
+
+Click Save
+
+Option B: Use Permission Set (Preferred)
+Setup → Quick Find → Search Permission Sets
+
+Click New
+
+Label: Expense Access
+
+License: Salesforce
+
+Click Save
+
+Click Object Settings → Find Expense → Click
+
+Click Edit → Tick required permissions
+
+Click Save
+
+Back to Permission Set → Click Manage Assignments → Add yourself
+
+✅ STEP 8: Customize Page Layout
+Object Manager → Expense → Page Layouts (left menu)
+
+Click Expense Layout
+
+Drag fields:
+
+Amount, Category, Date, Description
+
+Remove or hide "Owner" if not needed
+
+Click Save (top left or bottom)
+
+✅ STEP 9: Access Your App
+Top-left App Launcher (9 dots) → Search for: Expense Tracker
+
+Click on the App → You’ll see the Expenses tab
+
+Click New (top right)
+
+Fill in fields and click Save
+
+Repeat to create more test records
+
+✅ STEP 10: Optional Enhancements
+Validation Rule
+Object Manager → Expense → Validation Rules → New
+
+Example: Amount > 0
+
+plaintext
+Copy
+Edit
+Error Condition Formula: Amount__c <= 0
+Error Message: Amount must be positive
+Reports
+Click Reports tab → New Report → Type: Expenses
+
+Add filters/fields → Save and run
+
+Dashboards
+Click Dashboard tab → New Dashboard
+
+Add charts using report data
+
+
+
+
+
+----------------------------------------------------------
+---------------------------------------------------------
+Theory : 
+
+
+🔷 1. What is Salesforce?
+Answer:
+Salesforce is a cloud-based Customer Relationship Management (CRM) platform that helps organizations manage their customer relationships, sales pipelines, marketing automation, and service operations. It offers a wide variety of cloud services like Sales Cloud, Service Cloud, Marketing Cloud, and a development platform called Lightning Platform for building custom apps.
+
+It’s accessible via browser (no installation needed).
+
+Offers real-time analytics, automation, and mobile-first access.
+
+Allows integration with third-party tools via APIs.
+
+🔷 2. What is Salesforce Lightning Platform?
+Answer:
+The Lightning Platform (also known as Force.com) is a Platform-as-a-Service (PaaS) offering from Salesforce. It allows users to develop and deploy custom applications rapidly using low-code and no-code tools.
+
+Key components:
+
+App Builder: Drag-and-drop UI builder for pages and apps.
+
+Lightning Components: Reusable building blocks of UI.
+
+Apex: Java-like language to define server-side logic.
+
+Process Builder/Flow Builder: Tools for automating business logic.
+
+Object Manager: Define data models (custom objects, fields).
+
+🔷 3. What is a Custom Application in Salesforce?
+Answer:
+A custom application in Salesforce is a user-defined application that includes custom objects, tabs, workflows, and automation built to solve specific business needs (like student management or employee tracking).
+
+Built using App Manager → New Lightning App.
+
+Contains tabs (navigation), pages (layouts), and objects (data).
+
+You can control which users can access it using profiles/permissions.
+
+🔷 4. What is Apex in Salesforce?
+Answer:
+Apex is a strongly-typed, object-oriented programming language used in Salesforce for writing backend logic.
+
+Key features:
+
+Syntax similar to Java.
+
+Executes in a multitenant environment with strict governor limits.
+
+Can be used in Classes, Triggers, Batch Jobs, Controllers, etc.
+
+Supports SOQL and SOSL to query Salesforce records.
+
+Example Use Cases:
+
+Performing calculations.
+
+Updating multiple records with logic.
+
+Creating triggers on data insert/update/delete.
+
+🔷 5. What is an Object in Salesforce?
+Answer:
+An Object in Salesforce is similar to a table in a database. It stores structured data in rows (records) and columns (fields).
+
+Standard objects: Predefined by Salesforce (e.g., Account, Contact).
+
+Custom objects: Created by the user for specific use (e.g., Expense__c).
+
+Each object can have:
+
+Custom fields
+
+Page layouts
+
+Validation rules
+
+Record types
+
+🔷 6. What are Fields?
+Answer:
+Fields define the data stored in each record of an object. Types include:
+
+Text
+
+Number
+
+Date/Time
+
+Currency
+
+Picklist
+
+Formula (dynamic values like age = Today – DOB)
+
+🔷 7. What are Tabs in Salesforce?
+Answer:
+Tabs allow users to access object records via the app navigation bar. Tabs can be:
+
+Custom Tabs (for custom objects)
+
+Web Tabs (external pages)
+
+Visualforce Tabs (for custom pages)
+
+You must create a tab for a custom object to make it accessible from the UI.
+
+🔷 8. What is a Profile in Salesforce?
+Answer:
+A Profile controls what users can see and do in Salesforce. It defines:
+
+Object-level permissions (CRUD)
+
+Field-level visibility
+
+Tab visibility
+
+App access
+
+Login IP ranges and session settings
+
+All users must be assigned a profile.
+
+🔷 9. What is a Permission Set?
+Answer:
+A Permission Set is a collection of settings and permissions you can assign to users to extend access beyond what their profile provides. It allows flexible permission assignment without changing the user’s base profile.
+
+🔷 10. What is App Manager?
+Answer:
+The App Manager is where you:
+
+Create new Lightning Apps
+
+Define branding, logos, and primary objects
+
+Add custom or standard objects as navigation items
+
+Assign app visibility to profiles
+
+Steps:
+
+Setup → App Manager → New Lightning App
+
+Choose Tabs, assign User Profiles
+
+Save and activate
+
+🔷 11. What is Page Layout?
+Answer:
+Page Layouts control how fields, sections, buttons, and related lists appear on a record page. You can have different layouts for different record types or user profiles.
+
+🔷 12. What is Flow Builder?
+Answer:
+A Flow is an automation tool that allows you to:
+
+Collect data from users
+
+Make decisions based on logic
+
+Create or update records
+
+Flow Types:
+
+Screen Flows (interactive)
+
+Record-Triggered Flows (like triggers)
+
+Scheduled Flows
+
+🔷 13. What is SOQL?
+Answer:
+Salesforce Object Query Language (SOQL) is used to fetch records from Salesforce objects, similar to SQL but specific to Salesforce’s multi-tenant structure.
+
+Example:
+
+apex
+Copy
+Edit
+SELECT Name, Age__c FROM Student__c WHERE Age__c > 18
+🔷 14. What are Governor Limits?
+Answer:
+To ensure one org doesn't monopolize shared resources, Salesforce enforces Governor Limits such as:
+
+Max 100 SOQL queries per transaction
+
+Max 150 DML statements
+
+Max 10,000 records queried
+
+CPU time limits
+
+🔷 15. What is a Trigger?
+Answer:
+A Trigger is a piece of Apex code that runs automatically when records are inserted, updated, deleted, or undeleted.
+
+Example:
+
+apex
+Copy
+Edit
+trigger UpdateContact on Account (after insert) {
+  // logic here
+}
+🔷 16. What is the difference between Workflow, Process Builder, and Flow?
+Tool	Use Case	Flexibility
+Workflow	Simple field updates, email alerts	Low
+Process Builder	Multi-step logic with criteria	Medium
+Flow	Complex, screen-based or background logic	High
+
+🔷 17. What is Lightning App Builder?
+Answer:
+Lightning App Builder is a visual editor that lets you:
+
+Customize Home, Record, and App Pages
+
+Drag & drop components (charts, fields, lists)
+
+Assign visibility rules
+
+No code needed, perfect for admins.
+
+🔷 18. What is Data Security in Salesforce?
+Answer:
+Salesforce has multiple layers of data protection:
+
+Object-level: Profiles/permission sets
+
+Field-level: Field-level security
+
+Record-level: Org-Wide Defaults (OWD), Role Hierarchy, Sharing Rules
+
+🔷 19. What is Record Type?
+Answer:
+Record Types allow you to:
+
+Display different layouts
+
+Control picklist values
+
+Use multiple business processes for the same object
+
+🔷 20. What are Deployment Tools?
+Answer:
+
+Change Sets (between related orgs)
+
+Workbench / VS Code (for independent deployments)
+
+Ant Migration Tool
+
+Salesforce DX (SFDX) for pro dev workflows
+
+
+1. What is the difference between a Custom Object and a Standard Object in Salesforce?
+Answer:
+Standard objects are built-in Salesforce objects (like Account, Contact, Opportunity). Custom objects are created by users to store data specific to their business needs. Custom objects have API names ending in __c and can have custom fields, relationships, and validation rules.
+
+2. Can you explain what Lightning Experience is and how it differs from Classic?
+Answer:
+Lightning Experience is the modern UI for Salesforce that includes drag-and-drop components, responsive design, and a more efficient layout. It supports Lightning Components and has features like Kanban view and activity timeline. Classic is the older, limited UI with less flexibility.
+
+3. What is the role of the Schema Builder in Salesforce development?
+Answer:
+Schema Builder is a graphical tool that lets developers and admins view and manage objects, fields, and relationships visually. It simplifies schema creation, especially for complex relationships and field mappings.
+
+4. How do you deploy a custom app from sandbox to production?
+Answer:
+You can deploy using Change Sets, Salesforce CLI (for SFDX projects), or tools like ANT Migration Tool. A Change Set contains metadata like Apex classes, objects, and page layouts, and must be uploaded from sandbox and deployed in production with approval.
+
+5. What is a Custom Metadata Type and how is it different from Custom Settings?
+Answer:
+Custom Metadata Types are deployable configurations that can be packaged and moved across orgs. Unlike Custom Settings, they are metadata and support field-level security, validation rules, and are better suited for configuration data.
+
+6. How can you create a relationship between two custom objects?
+Answer:
+By adding a relationship field (Lookup or Master-Detail) on one object that points to the other. This establishes a parent-child relationship and controls data access, deletion behavior, and record ownership.
+
+7. What is the difference between Lookup and Master-Detail relationships in Salesforce?
+Answer:
+In Master-Detail, the child record is dependent on the parent. Deleting the parent deletes the child. In Lookup, both records are independent. Master-Detail allows roll-up summary fields, while Lookup does not.
+
+8. Can Apex classes be scheduled? If yes, how?
+Answer:
+Yes. Apex classes can be scheduled using the Schedulable interface. The execute() method is defined, and the class is scheduled via the UI or using System.schedule().
+
+9. What is the use of the @future annotation in Apex?
+Answer:
+@future is used for asynchronous processing. It allows time-consuming operations like callouts to external systems or bulk updates to be run in the background without blocking the main execution thread.
+
+10. How does Salesforce handle multi-tenancy at the code level?
+Answer:
+Salesforce uses governor limits to ensure fair use of resources across tenants. All code is executed in a shared runtime environment with enforced limits on memory, queries, DML, etc., for stability.
+
+11. What are Static Resources and how are they used in a Lightning application?
+Answer:
+Static Resources are used to store external files like JavaScript, CSS, images, or libraries. They can be referenced in Visualforce pages or Lightning components using $Resource global variable.
+
+12. What is a Lightning Record Page and how is it different from a Page Layout?
+Answer:
+A Lightning Record Page is a customizable layout using the Lightning App Builder. It supports dynamic components, visibility rules, and Lightning components. Page Layout defines field placement and related lists, but not component-based UI.
+
+13. Can you explain the MVC architecture used in Salesforce?
+Answer:
+MVC stands for Model-View-Controller:
+
+Model → Data layer (objects, fields)
+
+View → UI layer (Visualforce, Lightning Pages)
+
+Controller → Business logic (Apex classes, controllers)
+
+14. What are some security considerations when writing Apex code?
+Answer:
+Use with sharing to respect sharing rules, avoid SOQL injection by using bind variables, validate user input, and always use field-level security checks when exposing fields in code or UI.
+
+15. What is the use of the Developer Console in Salesforce?
+Answer:
+The Developer Console is a browser-based IDE used for debugging, writing code, executing anonymous Apex, running tests, viewing logs, and monitoring governor limits.
+
+16. What is a Custom Tab and how do you create one?
+Answer:
+A Custom Tab provides a user interface to display a custom object or web content. It’s created via Setup → Tabs → New Custom Object Tab. It can include default icons, links, and page layouts.
+
+17. How can you enforce field validation through Apex?
+Answer:
+By writing logic in Apex Triggers or Classes to check for required conditions, and throwing exceptions using ApexPages.addMessage() or System.assert() to prevent saving invalid data.
+
+18. What is Trailhead and why is it important for Salesforce learners and developers?
+Answer:
+Trailhead is Salesforce’s free online learning platform. It provides hands-on modules and projects on development, admin, and certification topics. It’s essential for building real-world Salesforce skills.
+
+19. How does the Change Set work and what are its limitations?
+Answer:
+Change Sets allow metadata transfer between related orgs (sandbox ↔ production). Limitations include: only related orgs, no support for all metadata types (like email templates), and manual testing after deployment.
+
+20. Explain the concept of Lightning Components and where you can use them.
+Answer:
+Lightning Components are reusable building blocks for modern UI in Salesforce. There are two types: Aura and Lightning Web Components (LWC). They're used in Lightning Pages, Community Sites, and Quick Actions.

@@ -1,0 +1,311 @@
+12.Creating an application in salesForce.com using Apex Programming Language
+Perform Addition of Two numbers.
+
+
+
+🔹 Step 1: Log in to Salesforce
+
+ Open [ 	](https://login.salesforce.com)
+ Enter your username and password
+ Click Log In
+
+---
+
+ 🔹 Step 2: Open Developer Console
+
+ Click the gear icon (⚙️) at the top-right corner
+ Select Developer Console
+
+---
+
+ 🔹 Step 3: Create a New Apex Class
+
+ In Developer Console: `File > New > Apex Class`
+ Name the class: `AdditionApp`
+ Paste the following code:
+
+```apex
+public class AdditionApp {
+    
+    // Method to add two numbers
+    public static Integer Add(Integer a, Integer b) {
+        return a + b;
+    }
+
+}
+```
+
+ Click OK to save
+
+---
+
+ 🔹 Step 4: Run Code Using Execute Anonymous Window
+
+ In Developer Console: `Debug > Open Execute Anonymous Window`
+ Paste this test code:
+
+```apex
+Integer result = AdditionApp.Add(5, 7);
+System.debug('Result: ' + result);
+```
+
+ Check “Open Log” (optional)
+ Click Execute
+
+---
+
+ 🔹 Step 5: View the Output
+
+ Go to the Logs tab in Developer Console
+ Open the latest log
+ Press `Ctrl + F` and search: `Result:`
+ You should see:
+
+  ```
+  USER_DEBUG [2]|DEBUG|Result: 12
+  ```
+
+---
+
+
+
+
+
+theory :
+
+
+🔹 Apex Class:
+apex
+Copy
+Edit
+public class AddTwoNumbers {
+
+    // Method to add two numbers
+    public static Integer addNumbers(Integer num1, Integer num2) {
+        return num1 + num2;
+    }
+}
+🔹 Execute Anonymous Code (to run and test the class):
+apex
+
+
+Integer result = AddTwoNumbers.addNumbers(10, 20);
+System.debug('Sum of two numbers is: ' + result);
+
+📘 Detailed Line-by-Line Explanation
+Line	Explanation
+public class AddTwoNumbers	Declares a global public class that contains the logic for addition. Classes group code logically.
+public static Integer addNumbers(Integer num1, Integer num2)	This method takes two integers, adds them, and returns the result. It's static, so you don’t need to create an object to use it.
+return num1 + num2;	Adds the two input numbers and returns the result to the calling code.
+System.debug(...)	Used in Apex to print to the Debug Logs, helpful during testing.
+
+💡 Theory for Viva – Apex, Salesforce, and Cloud
+🔹 1. What is Salesforce?
+Answer:
+Salesforce is a cloud-based CRM (Customer Relationship Management) platform that allows businesses to manage customer data, automate processes, and build custom applications using low-code and code-based tools.
+
+🔹 2. What is Apex in Salesforce?
+Answer:
+
+Apex is a strongly-typed, object-oriented programming language used in Salesforce.
+
+It is syntactically similar to Java.
+
+Apex is used for writing business logic, triggers, web services, scheduled jobs, and custom controllers.
+
+🔹 3. Where is Apex code executed?
+Answer:
+Apex code is executed on Salesforce's multi-tenant cloud platform in a hosted environment called the Lightning Platform / Force.com.
+
+🔹 4. How do you run Apex code?
+Answer:
+Apex code can be run in multiple ways:
+
+Execute Anonymous Window (Developer Console) – for testing code
+
+Triggers – for automating data operations
+
+Classes and Methods – for reusable logic
+
+Visualforce or Lightning Components – for UI-based apps
+
+🔹 5. What is the Developer Console in Salesforce?
+Answer:
+The Developer Console is a browser-based tool in Salesforce used for:
+
+Writing and running Apex code
+
+Debugging with logs
+
+Running SOQL queries
+
+Managing tests
+
+🔹 6. What are Static Methods in Apex?
+Answer:
+A static method:
+
+Belongs to the class, not objects
+
+Can be called directly like ClassName.methodName()
+
+Is used for utility or helper functions
+
+🔹 7. What is System.debug()?
+Answer:
+System.debug() is used to:
+
+Print output to the Debug Logs
+
+Help in troubleshooting and testing
+
+It doesn’t display to users, only to developers
+
+🔹 8. What are some benefits of using Apex?
+Tight integration with Salesforce data
+
+Built-in security and governor limits
+
+Can be used with Lightning and Visualforce
+
+Allows automation of complex business logic
+
+🔹 9. What are Governor Limits in Apex?
+Answer:
+Since Apex runs in a shared cloud environment, Salesforce enforces limits on:
+
+CPU time
+
+SOQL queries
+
+Number of records processed
+To ensure fair use and avoid monopolizing server resources.
+
+🔹 10. What is Force.com Platform (Lightning Platform)?
+Answer:
+It’s the PaaS (Platform-as-a-Service) layer of Salesforce that lets you:
+
+Build custom applications
+
+Write business logic using Apex
+
+Create custom UIs with Visualforce or Lightning Components
+
+📌 Summary
+Component	Description
+Apex	Programming language for Salesforce platform
+Static Class Method	Adds two numbers and returns result
+System.debug()	Used for output during testing
+Developer Console	Tool for writing/running/testing code
+Salesforce Platform	Cloud CRM and app development platform
+
+
+🧭 1. What is Salesforce.com?
+Salesforce.com is a Cloud Computing-based Customer Relationship Management (CRM) platform. It provides both:
+
+SaaS (Software as a Service) – ready-to-use apps like Sales Cloud, Service Cloud, etc.
+
+PaaS (Platform as a Service) – development tools via Force.com/Lightning Platform to build custom applications.
+
+🧠 2. What is Apex Programming?
+Apex is:
+
+A server-side programming language developed by Salesforce.
+
+Similar to Java, designed specifically to interact with Salesforce data.
+
+Enables custom logic, integrations, triggers, web services, scheduled tasks, batch processing, etc.
+
+Apex is compiled, strongly typed, and runs entirely in the Salesforce cloud.
+
+🧰 3. Where is Apex Used in Salesforce?
+Apex can be used in:
+
+Component	Purpose
+Triggers	Code that runs on DML actions
+Classes & Methods	Reusable logic (like our AddTwoNumbers)
+Web Services	Exposing logic externally
+Scheduled Jobs	Cron-style scheduled logic
+Batch Apex	Large data operations
+Visualforce/Lightning	Backend logic for UI
+
+🔗 4. How Does the Code Fit in Salesforce Architecture?
+When we create an Apex class to add two numbers, the code is compiled and stored in Salesforce servers, and can be run:
+
+Using the Developer Console
+
+As a backend class for a UI (Visualforce or Lightning)
+
+From Flow, Process Builder, or REST API
+
+🛠️ 5. What Is the Developer Console?
+The Developer Console is an in-browser IDE offered by Salesforce. It allows you to:
+
+Write and run code (via Execute Anonymous Window)
+
+View Debug Logs
+
+Run tests and analyze performance
+
+Run SOQL queries
+
+🔁 6. How Does Code Execute? (Lifecycle)
+You write Apex class (AddTwoNumbers)
+
+Compile & Save into Salesforce (cloud-hosted)
+
+Execute code via Developer Console
+
+System.debug() sends output to Debug Log
+
+You open Logs tab to view the result.
+
+📊 7. What is the Role of Static Methods in This Code?
+A static method can be called without creating an object.
+
+It’s memory efficient and ideal for utility tasks like addition, conversion, etc.
+
+Here, addNumbers(num1, num2) is static for convenience.
+
+🔐 8. What are Governor Limits, and Why Do They Matter?
+Governor Limits are Salesforce's way to enforce fair usage of resources across tenants (users):
+
+Limit Type	Example
+DML Statements	Max 150 per transaction
+SOQL Queries	Max 100 per transaction
+Heap Size	Max 6 MB
+CPU Time	Max 10,000 ms
+
+Even our simple addition example will be subject to these limits, though it won’t hit them.
+
+⚙️ 9. Advantages of Using Apex
+Deep integration with Salesforce data (objects, fields)
+
+Built-in security (user access, object-level security)
+
+Runs natively in cloud
+
+Auto-scaled by Salesforce backend
+
+Compatible with all other Salesforce features (flows, process builder, etc.)
+
+💡 10. How Can This Same Code Be Extended for Real-World Apps?
+You can extend this code to:
+
+Take user input via a form (Visualforce or Lightning)
+
+Store results in a custom object
+
+Use in a trigger (e.g., sum of 2 fields)
+
+Use in a REST API (expose this as a service)
+
+Link with flows or automation to auto-calculate fields
+
+🧪 Sample Viva Questions with Smart Answers
+Question	Suggested Answer
+What is Apex?	It’s Salesforce's object-oriented programming language for custom logic and automation.
+Where can we run Apex code?	In triggers, classes, Developer Console, Visualforce, Lightning Components, or via APIs.
+What is the platform on which Apex runs?	The Lightning Platform (previously Force.com), part of Salesforce's PaaS.
+Why use static methods here?	They simplify calling the method without creating objects, ideal for utility functions like addition.
+How does this code execute in Salesforce?	It is compiled, stored in Salesforce cloud, and executed on-demand through the Developer Console or other triggers.
